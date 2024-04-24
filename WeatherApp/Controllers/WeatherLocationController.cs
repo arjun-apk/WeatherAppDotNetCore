@@ -1,4 +1,5 @@
 ﻿using log4net;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
 using Newtonsoft.Json;
@@ -11,6 +12,7 @@ namespace WeatherApp.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class WeatherLocationController : ControllerBase
     {
         private static ILog _log = LogManager.GetLogger(typeof(WeatherLocationController));

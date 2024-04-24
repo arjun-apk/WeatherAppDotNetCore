@@ -1,48 +1,22 @@
-using MongoExample.Services;
-using WeatherApp;
-using WeatherApp.Context.DBSettings;
-using WeatherApp.Context.WeatherLocation;
-using WeatherApp.Models;
-using WeatherApp.Services;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Hosting;
 
-var builder = WebApplication.CreateBuilder(args);
-
-// Add services to the container.
-builder.Services.AddControllers();
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-
-// Configure CORS
-builder.Services.AddCors(options =>
+namespace WeatherApp
 {
-    options.AddPolicy("AllowSpecificOrigin",
-        builder => builder
-            .WithOrigins("http://localhost:3000", "http://192.168.1.45:3000")
-            .AllowAnyMethod()
-            .AllowAnyHeader()
-            .AllowCredentials());
-});
+    public class Program
+    {
+        public static void Main(string[] args)
+        {
+            CreateHostBuilder(args).Build().Run();
+        }
 
-builder.Services.Configure<MongoDBSettings>(builder.Configuration.GetSection("MongoDB"));
-builder.Services.AddSingleton<IMongoDBService, MongoDBService>();
-builder.Services.AddSingleton<IWeatherLocationService, WeatherLocationService>();
-builder.Services.AddSignalR();
-
-var app = builder.Build();
-
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
+        public static IHostBuilder CreateHostBuilder(string[] args)
+        {
+            return Host.CreateDefaultBuilder(args)
+                       .ConfigureWebHostDefaults(webBuilder =>
+                       {
+                           webBuilder.UseStartup<Startup>();
+                       });
+        }
+    }
 }
-
-app.UseHttpsRedirection();
-
-// Enable CORS
-app.UseCors("AllowSpecificOrigin");
-
-app.UseAuthorization();
-app.MapControllers();
-app.MapHub<SignalrHub>("/signalrHub");
-app.Run();

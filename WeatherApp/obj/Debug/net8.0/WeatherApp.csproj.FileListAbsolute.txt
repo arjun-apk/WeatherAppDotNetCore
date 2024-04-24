@@ -156,3 +156,12 @@ D:\PMSquareRepository\WeatherApplicationDev\WeatherAppC#\WeatherApp\obj\Debug\ne
 D:\PMSquareRepository\WeatherApplicationDev\WeatherAppC#\WeatherApp\obj\Debug\net8.0\ref\WeatherApp.dll
 D:\PMSquareRepository\WeatherApplicationDev\WeatherAppC#\WeatherApp\bin\Debug\net8.0\libman.json
 D:\PMSquareRepository\WeatherApplicationDev\WeatherAppC#\WeatherApp\bin\Debug\net8.0\WeatherApp.staticwebassets.runtime.json
+D:\PMSquareRepository\WeatherApplicationDev\WeatherAppC#\WeatherApp\obj\Debug\net8.0\WeatherApp.sourcelink.json
+D:\PMSquareRepository\WeatherApplicationDev\WeatherAppC#\WeatherApp\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+D:\PMSquareRepository\WeatherApplicationDev\WeatherAppC#\WeatherApp\bin\Debug\net8.0\Microsoft.IdentityModel.Abstractions.dll
+D:\PMSquareRepository\WeatherApplicationDev\WeatherAppC#\WeatherApp\bin\Debug\net8.0\Microsoft.IdentityModel.JsonWebTokens.dll
+D:\PMSquareRepository\WeatherApplicationDev\WeatherAppC#\WeatherApp\bin\Debug\net8.0\Microsoft.IdentityModel.Logging.dll
+D:\PMSquareRepository\WeatherApplicationDev\WeatherAppC#\WeatherApp\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.dll
+D:\PMSquareRepository\WeatherApplicationDev\WeatherAppC#\WeatherApp\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+D:\PMSquareRepository\WeatherApplicationDev\WeatherAppC#\WeatherApp\bin\Debug\net8.0\Microsoft.IdentityModel.Tokens.dll
+D:\PMSquareRepository\WeatherApplicationDev\WeatherAppC#\WeatherApp\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll

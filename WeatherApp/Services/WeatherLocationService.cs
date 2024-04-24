@@ -16,8 +16,6 @@ namespace WeatherApp.Services
         private static ILog _log = LogManager.GetLogger(typeof(WeatherLocationService));
         private readonly IMongoCollection<WeatherLocationEntity> _weatherLocation;
         private readonly HttpClient _httpClient;
-        private readonly IHubContext<SignalrHub> _hubContext;
-
         public WeatherLocationService(IOptions<MongoDBSettings> mongoDBSettings, IMongoDBService mongoDBService, IHubContext<SignalrHub> hubContext)
         {
             IMongoDatabase weatherDatabase = mongoDBService.GetWeatherDatabase;
@@ -25,6 +23,8 @@ namespace WeatherApp.Services
             _httpClient = new HttpClient();
             _hubContext = hubContext;
         }
+        private readonly IHubContext<SignalrHub> _hubContext;
+
         public async Task<ResultEntity<List<WeatherLocationEntity>>> GetAllWeatherLocations()
         {
             try
@@ -55,14 +55,14 @@ namespace WeatherApp.Services
                 return new ResultEntity<List<WeatherLocationEntity>>
                 {
                     Status = false,
-                    Data = null,
+                    Data = [],
                     ResultCode = ResultCode.Status500InternalServerError,
                     Message = "Internal Server Error"
                 };
             }
         }
 
-        public async Task<ResultEntity<WeatherLocationEntity>> GetWeatherLocationById(string id)
+        public async Task<ResultEntity<WeatherLocationEntity?>> GetWeatherLocationById(string id)
         {
             try
             {
@@ -71,7 +71,7 @@ namespace WeatherApp.Services
                 _log.Info($"GetWeatherLocations: location {JsonConvert.SerializeObject(location)}");
                 if (location == null)
                 {
-                    return new ResultEntity<WeatherLocationEntity>
+                    return new ResultEntity<WeatherLocationEntity?>
                     {
                         Status = false,
                         Data = null,
@@ -79,7 +79,7 @@ namespace WeatherApp.Services
                         Message = "Weather location is not found"
                     };
                 }
-                return new ResultEntity<WeatherLocationEntity>
+                return new ResultEntity<WeatherLocationEntity?>
                 {
                     Status = true,
                     Data = location,
@@ -90,7 +90,7 @@ namespace WeatherApp.Services
             catch (Exception ex)
             {
                 _log.Error($"GetWeatherLocations: Error occurred while get location by weather location id, id {id}", ex);
-                return new ResultEntity<WeatherLocationEntity>
+                return new ResultEntity<WeatherLocationEntity?>
                 {
                     Status = false,
                     Data = null,
